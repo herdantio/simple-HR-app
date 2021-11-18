@@ -1,0 +1,22 @@
+version: "3"
+services:
+  server:
+    container_name: HR_server
+    restart: always
+    build: ./backend
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+
+  postgres:
+    container_name: HR_postgres
+    image: postgres:14.0-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
+
